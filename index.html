@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Virtual Tour - 17809_MP_2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #panorama {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="panorama"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.105.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/pchen66/panolens.js@0.10.2/build/panolens.min.js"></script>
+
+  <script>
+    const pano = new PANOLENS.ImagePanorama('abc.jpeg'); // Twoja panorama
+
+    const viewer = new PANOLENS.Viewer({
+      container: document.querySelector('#panorama'),
+      output: 'console',
+      autoRotate: false // Opcjonalnie: możesz ustawić true, żeby panorama obracała się automatycznie
+    });
+
+    viewer.add(pano); // Dodaj panoramę do widoku
+    viewer.setPanorama(pano); // Ustaw jako początkową
+  </script>
+</body>
+</html>
+

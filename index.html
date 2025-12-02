@@ -6,37 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    * {
+    html, body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      height: 100vh;
+      height: 100%;
       overflow: hidden;
-      background: #000;
       font-family: sans-serif;
     }
 
     #buttons {
       position: absolute;
       top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 10px;
       z-index: 10;
+      display: block;
+      width: 250px;
+      transition: width 0.3s;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .button-row {
       display: flex;
-      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 10px;
     }
 
     .nav-button {
       padding: 10px 16px;
+      margin: 5px 0;
+      font-size: 14px;
       background-color: #ffffffcc;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 14px;
       transition: background-color 0.2s ease;
+      width: 48%; /* dwie kolumny */
     }
 
     .nav-button:hover {
@@ -44,31 +50,30 @@
     }
 
     #panorama {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      bottom: 10px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Przyciski -->
   <div id="buttons">
+    <div class="button-row">
       <button class="nav-button" onclick="viewer.setPanorama(panoOld)">30/11/25</button>
       <button class="nav-button" onclick="viewer.setPanorama(panoNew)">2/12/25</button>
+    </div>
   </div>
 
-  <!-- Panorama -->
   <div id="panorama"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.105.2/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/pchen66/panolens.js@0.10.2/build/panolens.min.js"></script>
 
   <script>
-    // Panorama starsza
-    const panoOld = new PANOLENS.ImagePanorama('abc.jpeg'); 
-
-    // Panorama aktualna (startowa)
-    const panoNew = new PANOLENS.ImagePanorama('abd.jpeg'); 
+    const panoOld = new PANOLENS.ImagePanorama('abc.jpeg'); // starsza panorama
+    const panoNew = new PANOLENS.ImagePanorama('abd.jpeg'); // aktualna
 
     const viewer = new PANOLENS.Viewer({
       container: document.querySelector('#panorama'),
@@ -79,11 +84,10 @@
     viewer.add(panoOld);
     viewer.add(panoNew);
 
-    viewer.setPanorama(panoNew); // Startuje z abd.jpeg (2/12/25)
+    viewer.setPanorama(panoNew); // start: abd.jpeg
   </script>
+
 </body>
 </html>
-
-
 
 

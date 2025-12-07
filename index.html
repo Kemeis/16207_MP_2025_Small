@@ -42,7 +42,7 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.2s ease;
-      width: 48%; /* dwie kolumny */
+      width: 48%;
     }
 
     .nav-button:hover {
@@ -63,6 +63,7 @@
     <div class="button-row">
       <button class="nav-button" onclick="viewer.setPanorama(panoOld)">30/11/25</button>
       <button class="nav-button" onclick="viewer.setPanorama(panoNew)">2/12/25</button>
+      <button class="nav-button" onclick="viewer.setPanorama(panoLatest)">7/12/25</button>
     </div>
   </div>
 
@@ -72,8 +73,9 @@
   <script src="https://cdn.jsdelivr.net/gh/pchen66/panolens.js@0.10.2/build/panolens.min.js"></script>
 
   <script>
-    const panoOld = new PANOLENS.ImagePanorama('abc.jpeg'); // starsza panorama
-    const panoNew = new PANOLENS.ImagePanorama('abd.jpeg'); // aktualna
+    const panoOld    = new PANOLENS.ImagePanorama('abc.jpeg');  // 30/11/25
+    const panoNew    = new PANOLENS.ImagePanorama('abd.jpeg');  // 2/12/25
+    const panoLatest = new PANOLENS.ImagePanorama('de.jpeg');   // 7/12/25 (startowa)
 
     const viewer = new PANOLENS.Viewer({
       container: document.querySelector('#panorama'),
@@ -83,8 +85,9 @@
 
     viewer.add(panoOld);
     viewer.add(panoNew);
+    viewer.add(panoLatest);
 
-    viewer.setPanorama(panoNew); // start: abd.jpeg
+    viewer.setPanorama(panoLatest); // start: de.jpeg
   </script>
 
 </body>
